@@ -1,0 +1,5 @@
+DATE=`/bin/date`;
+
+[ -d ./www.usertoken.com ] && echo "deleting old ./www.usertoken.com" && /bin/rm -rf ./www.usertoken.com;
+git clone  https://onztv-inc@bitbucket.org/onztvweb/www.usertoken.com.git;
+( rm -rf ./.git; cp -r ./www.usertoken.com/.git ./;rm -rf ./www.usertoken.com;git add -A .;git commit -m "Build $DATE";git push );
