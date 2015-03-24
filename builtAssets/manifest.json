@@ -1,0 +1,27 @@
+{
+  "assets": {
+    "main.css": "main-47aef43db055e13152e04bdfa86990dc.css",
+    "application.js": "application-e590f4ba7a3986bd5861633e25980718.js",
+    "main.js": "main-b972050f1ed303cdf7687475c72ee17a.js"
+  },
+  "files": {
+    "main-47aef43db055e13152e04bdfa86990dc.css": {
+      "logical_path": "main.css",
+      "mtime": "2015-03-24T21:23:48.000Z",
+      "size": 203147,
+      "digest": "47aef43db055e13152e04bdfa86990dc"
+    },
+    "application-e590f4ba7a3986bd5861633e25980718.js": {
+      "logical_path": "application.js",
+      "mtime": "2015-03-24T21:23:48.000Z",
+      "size": 119664,
+      "digest": "e590f4ba7a3986bd5861633e25980718"
+    },
+    "main-b972050f1ed303cdf7687475c72ee17a.js": {
+      "logical_path": "main.js",
+      "mtime": "2015-03-24T21:23:48.000Z",
+      "size": 32,
+      "digest": "b972050f1ed303cdf7687475c72ee17a"
+    }
+  }
+}

@@ -34,6 +34,7 @@ var contactController = require('./controllers/contact');
  */
 var secrets = require('./config/secrets');
 var passportConf = require('./config/passport');
+var dotenv = require('./config/dotenv');
 
 /**
  * Create Express server.
@@ -43,7 +44,8 @@ var app = express();
 /**
  * Connect to MongoDB.
  */
-mongoose.connect(secrets.db);
+// mongoose.connect(secrets.db);
+mongoose.connect(dotenv.db);
 mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
 });
@@ -51,7 +53,7 @@ mongoose.connection.on('error', function() {
 /**
  * Express configuration.
  */
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(compress());
@@ -68,8 +70,10 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: secrets.sessionSecret,
-  store: new MongoStore({ url: secrets.db, autoReconnect: true })
+//  secret: secrets.sessionSecret,
+  secret: dotenv.sessionSecret,
+//  store: new MongoStore({ url: secrets.db, autoReconnect: true })
+  store: new MongoStore({ url: dotenv.db, autoReconnect: true })
 }));
 app.use(passport.initialize());
 app.use(passport.session());

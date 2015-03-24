@@ -21,9 +21,12 @@
 
 module.exports = {
 
-  db: process.env.MONGODB || 'mongodb://rw:rw2015launch@ds053139.mongolab.com:53139/launch',
-
-  sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
+/**
+ *  Replaced with dotenv - alex - 20150324
+ *
+ *  db: process.env.MONGODB || 'mongodb://localhost:27017/users',
+ *  sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
+**/
 
   mailgun: {
     user: process.env.MAILGUN_USER || 'postmaster@sandbox697fcddc09814c6b83718b9fd5d4e5dc.mailgun.org',
