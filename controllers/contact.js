@@ -38,7 +38,7 @@ exports.postContact = function(req, res) {
   var name = req.body.name;
   var body = req.body.message;
   var to = 'your@email.com';
-  var subject = 'Contact Form | User Token';
+  var subject = 'Contact Form | Hackathon Starter';
 
   var mailOptions = {
     to: to,

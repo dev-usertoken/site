@@ -6,8 +6,6 @@ var passport = require('passport');
 var User = require('../models/User');
 var secrets = require('../config/secrets');
 
-var Message = require('../models/Message');
-
 /**
  * GET /login
  * Login page.
@@ -86,9 +84,7 @@ exports.postSignup = function(req, res, next) {
 
   var user = new User({
     email: req.body.email,
-    password: req.body.password,
-    reputation: 0,
-    _gravatar: ''
+    password: req.body.password
   });
 
   User.findOne({ email: req.body.email }, function(err, existingUser) {
@@ -358,94 +354,5 @@ exports.postForgot = function(req, res, next) {
   ], function(err) {
     if (err) return next(err);
     res.redirect('/forgot');
-  });
-};
-
-exports.getUser = function(req,res,next){
-  var userId = req.params.userId;
-
-  User.findOne({ _id: userId }, function(err, user) {
-    if (!user) {
-      //req.flash('errors', { msg: 'No account with that email address exists.' });
-      //return res.redirect('/forgot');
-      return res.json({});
-    } else {
-      return res.json(user);
-    }
-  });
-};
-
-exports.addFav = function(req,res,next){
-  var userId = req.params.userId;
-  var channelId = req.params.channelId;
-
-  User.findOne({ _id: userId }, function(err, user) {
-    if (!user) {
-      //req.flash('errors', { msg: 'No account with that email address exists.' });
-      //return res.redirect('/forgot');
-      return res.json({});
-    } else {
-      if(user.favChannels.indexOf(channelId) < 0){
-        //fav not found, add it
-        user.favChannels.push(channelId);
-        user.save(function(err) {
-          if (err) return next(err);
-          return res.json(user.favChannels);
-        });
-      } else {
-        return res.json(user.favChannels);
-      }
-    }
-  });
-};
-
-exports.getFav = function(req,res,next){
-  var userId = req.params.userId;
-  var channelId = req.params.channelId;
-
-  User.findOne({ _id: userId }, function(err, user) {
-    if (!user) {
-      //req.flash('errors', { msg: 'No account with that email address exists.' });
-      //return res.redirect('/forgot');
-      return res.json({});
-    } else {
-        return res.json(user.favChannels);
-    }
-  });
-};
-
-exports.deleteFav = function(req,res,next){
-  var userId = req.params.userId;
-  var channelId = req.params.channelId;
-
-  User.findOne({ _id: userId }, function(err, user) {
-    if (!user) {
-      //req.flash('errors', { msg: 'No account with that email address exists.' });
-      //return res.redirect('/forgot');
-      return res.json({});
-    } else {
-      if(user.favChannels.indexOf(channelId) > -1){
-        //fav found, remove it
-        var idx = user.favChannels.indexOf(channelId);
-        var newFavChannels = [];
-        function pushRemainingElements(element, index, array) {
-          if(index != idx){
-            newFavChannels.push(element);
-          }
-
-          if(index == (array.length-1)){
-            user.favChannels = newFavChannels;
-            user.save(function(err) {
-              if (err) return next(err);
-              return res.json(user.favChannels);
-            });
-          }
-        }
-
-        user.favChannels.forEach(pushRemainingElements);
-      } else {
-        return res.json(user.favChannels);
-      }
-    }
   });
 };

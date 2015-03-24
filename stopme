@@ -1,6 +1,0 @@
-export PATH="$HOME/.local/n/bin:$PATH"
-
-PWD=`pwd`
-PID=`ps -ef | grep node | grep "$PWD" | awk '{print $2, $3}'`
-
-for pid in $PID; do kill $pid;done
