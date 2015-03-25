@@ -58,7 +58,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(compress());
 app.use(connectAssets({
-  paths: [path.join(__dirname, 'public/css'), path.join(__dirname, 'public/js')]
+  paths: [path.join(__dirname, 'public/css'), path.join(__dirname, 'public/js'), path.join(__dirname, 'public/images')]
 }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -70,9 +70,7 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-//  secret: secrets.sessionSecret,
   secret: dotenv.sessionSecret,
-//  store: new MongoStore({ url: secrets.db, autoReconnect: true })
   store: new MongoStore({ url: dotenv.db, autoReconnect: true })
 }));
 app.use(passport.initialize());
